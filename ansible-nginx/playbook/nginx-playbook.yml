@@ -1,5 +1,10 @@
 - name: Install NGINX
   hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  vars:
+      ansible_python_interpreter: /usr/bin/python3
   connection: ssh
   gather_facts: yes
   tasks:
