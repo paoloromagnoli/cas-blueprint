@@ -6,25 +6,24 @@ resources:
     properties:
       image: ubuntu
       flavor: small
-      constraints:
-        - tag: 'env:vsphere'
+      remoteAccess:
+        authentication: keyPairName
+        keyPair: aws_vmw_company
       cloudConfig: |
-        users:
-          - name: root
-            ssh-authorized-keys:
-              - <Your Public SSH Key>
-  Ansible:
+        package_update: true
+        packages:
+          - python
+  Cloud_Ansible_1:
     type: Cloud.Ansible
     properties:
-      inventoryFile: /etc/ansible/hosts
-      username: root
+      host: '${resource.Cloud_Machine_1.*}'
+      osType: linux
+      account: ansible-aws
+      username: ubuntu
+      privateKeyFile: /home/centos/.ssh/aws_vmw_company.pem
       playbooks:
         provision:
-          - /root/playbooks/web.yml
-      osType: linux
-      groups:
-        - GroupName
+          - /home/centos/playbooks/nginx-playbook.yml
       maxConnectionRetries: 10
-      host: '${resource.Cloud_Machine_1.*}'
-      account: Ansible-OSS
-      privateKeyFile: ~/.ssh/id_rsa
+      groups:
+        - web
