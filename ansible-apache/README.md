@@ -2,7 +2,7 @@
 
 ## Contents 
 
-* nginx-playbook.yml - Simple Playbook for deploying Nginx 
+* apache-playbook.yml - Simple Playbook for deploying Apache HTTPD
 * blueprint.yaml - Blueprint with an Ansible Object
 
 ### Overview
@@ -37,7 +37,7 @@ Once that is created, you will need to provide a user with sufficient credential
 
 ### Playbooks
 
-Ensure that you have copied your playbooks to a directory with appropriate access on the Ansible Control Machine (ACM). In the blueprint sample above we have created our integration using the root (not recommended) account, and our playbooks live in ``` /root/playbooks ```.
+Ensure that you have copied your playbooks to a directory with appropriate access on the Ansible Control Machine (ACM). 
 
 #### A Note on Ansible Requirements
 
